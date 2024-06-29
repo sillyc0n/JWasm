@@ -37,4 +37,4 @@ jobs:
       run: cd Regress
 
     - name: Run tests
-      run:./test-linux.sh
+      run: ./test-linux.sh
