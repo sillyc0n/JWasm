@@ -1,0 +1,40 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        # macOS is not included due to the exclusion in Travis CI config
+        # compiler: [gcc, clang] # Uncomment and adjust if needed for specific compilers
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up C environment
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential
+
+    - name: Clone JWasm regressions
+      run: git clone https://github.com/JWasm/JWasm-regressions.git Regress
+
+    - name: Build
+      run: make -s -f GccUnix.mak > /dev/null
+
+    - name: Setup PATH
+      run: echo "export PATH=\${{ github.workspace }}/GccUnixR:\${{ env.PATH }}" >> $GITHUB_ENV
+
+    - name: Change directory to Regress
+      run: cd Regress
+
+    - name: Run tests
+      run:./test-linux.sh
