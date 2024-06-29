@@ -29,12 +29,10 @@ jobs:
 
     - name: Build
       run: make -s -f GccUnix.mak
-
-    - name: Setup PATH
-      run: export PATH=${{ github.workspace }}/GccUnixR:${{ env.PATH }}
-
+      
     - name: Run tests
       run: |
+        export PATH=${{ github.workspace }}/GccUnixR:${{ PATH }}
         echo $PATH
-        cd Regress \
+        cd Regress
         ./test-linux.sh
