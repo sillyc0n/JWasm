@@ -31,7 +31,7 @@ jobs:
       run: make -s -f GccUnix.mak
 
     - name: Setup PATH
-      run: echo "export PATH=${{ github.workspace }}/GccUnixR:${{ env.PATH }}" >> $GITHUB_ENV
+      run: export PATH=${{ github.workspace }}/GccUnixR:${{ env.PATH }}
 
     - name: Run tests
       run: |
