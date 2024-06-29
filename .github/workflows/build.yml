@@ -31,7 +31,7 @@ jobs:
       run: make -s -f GccUnix.mak > /dev/null
 
     - name: Setup PATH
-      run: echo "export PATH=\${{ github.workspace }}/GccUnixR:\${{ env.PATH }}" >> $GITHUB_ENV
+      run: echo "export PATH=${{ github.workspace }}/GccUnixR:${{ env.PATH }}" >> $GITHUB_ENV
 
     - name: Change directory to Regress
       run: cd Regress
