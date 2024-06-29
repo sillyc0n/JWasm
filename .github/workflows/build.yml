@@ -32,7 +32,7 @@ jobs:
 
     - name: Run tests
       run: |
-        echo "${{ github.workspace }}/GccUnixR" >> "${{ GITHUB_PATH }}"
+        echo "${{ github.workspace }}/GccUnixR" >> $GITHUB_PATH
         cat $GITHUB_PATH
         echo $PATH
         cd Regress
