@@ -33,8 +33,7 @@ jobs:
     - name: Setup PATH
       run: echo "export PATH=${{ github.workspace }}/GccUnixR:${{ env.PATH }}" >> $GITHUB_ENV
 
-    - name: Change directory to Regress
-      run: cd Regress
-
     - name: Run tests
-      run: ./test-linux.sh
+      run: |
+        cd Regress \
+        ./test-linux.sh
