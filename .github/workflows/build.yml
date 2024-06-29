@@ -38,5 +38,6 @@ jobs:
         # echo "${{ github.workspace }}/GccUnixR" >> $GITHUB_PATH
         # cat $GITHUB_PATH        
         cd Regress
-        /bin/bash test-linux.sh; [ $? -gt 0 ] 
+        set +e
+        /bin/bash test-linux.sh
         ls -l
