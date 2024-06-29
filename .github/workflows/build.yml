@@ -32,8 +32,9 @@ jobs:
 
     - name: Run tests
       run: |
-        echo "export PATH=${{ github.workspace }}/GccUnixR:$PATH" >> $GITHUB_ENV
-        echo $PATH
+        #echo "export PATH=${{ github.workspace }}/GccUnixR:$PATH" >> $GITHUB_ENV
+        #echo $PATH
+        export PATH=${{ github.workspace }}/GccUnixR:$PATH        
         # echo "${{ github.workspace }}/GccUnixR" >> $GITHUB_PATH
         # cat $GITHUB_PATH        
         cd Regress
