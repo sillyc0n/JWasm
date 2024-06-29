@@ -32,7 +32,7 @@ jobs:
       
     - name: Run tests
       run: |
-        export PATH=${{ github.workspace }}/GccUnixR:${{ PATH }}
+        export PATH=${{ github.workspace }}/GccUnixR:${{ env.PATH }}
         echo $PATH
         cd Regress
         ./test-linux.sh
