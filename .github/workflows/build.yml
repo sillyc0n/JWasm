@@ -28,12 +28,13 @@ jobs:
       run: git clone https://github.com/JWasm/JWasm-regressions.git Regress
 
     - name: Build
-      run: make -s -f GccUnix.mak > /dev/null
+      run: make -s -f GccUnix.mak
 
     - name: Setup PATH
       run: echo "export PATH=${{ github.workspace }}/GccUnixR:${{ env.PATH }}" >> $GITHUB_ENV
 
     - name: Run tests
       run: |
+        echo $PATH
         cd Regress \
         ./test-linux.sh
