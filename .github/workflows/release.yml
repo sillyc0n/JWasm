@@ -41,6 +41,7 @@ jobs:
     - name: Package
       run: |
         tar -czvf jwasm-${{ env.TAG_NAME }}-linux-x86_64.tar.gz -C GccUnixR jwasm
+        ls -l
     
     - name: Create a release
       id: create_release
@@ -59,7 +60,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./jwasm-${{ env.TAG_NAME }}-linux-x86_64.tar.gz -C GccUnixR jwasm
-        asset_name: jwasm-${{ env.TAG_NAME }}-linux-x86_64.tar.gz -C GccUnixR jwasm
+        asset_path: ./jwasm-${{ env.TAG_NAME }}-linux-x86_64.tar.gz
+        asset_name: jwasm-${{ env.TAG_NAME }}-linux-x86_64.tar.gz
         asset_content_type: application/gzip    
     
