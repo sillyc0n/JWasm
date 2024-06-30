@@ -2,9 +2,9 @@ name: Build and Test
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -36,27 +36,12 @@ jobs:
         cd Regress        
         ./test-linux.sh
 
-#    - name: Extract tag name
-#      id: extract_tag
-#      run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
-
     - name: Package
       run: |
         tar -czvf jwasm-${{ github.run_id }}-${{ github.sha }}-linux-x86_64.tar.gz -C GccUnixR jwasm
-    
-#    - name: Create a release
-#      id: create_release
-#      uses: actions/create-release@v1
-#      env:
-#        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+#    - name: Upload artifact
+#      uses: actions/upload-artifact@v2
 #      with:
-#        tag_name: ${{ github.ref }}
-#        release_name: Release  ${{ github.ref }}
-#        draft: false
-#       prerelease: false
-    
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: jwasm-${{ github.run_id }}-${{ github.sha }}-linux-x86_64.tar.gz
-        path: ./jwasm-${{ github.run_id }}-${{ github.sha }}-linux-x86_64.tar.gz
+#        name: jwasm-${{ github.run_id }}-${{ github.sha }}-linux-x86_64.tar.gz
+#        path: ./jwasm-${{ github.run_id }}-${{ github.sha }}-linux-x86_64.tar.gz
