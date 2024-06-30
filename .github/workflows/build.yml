@@ -33,6 +33,8 @@ jobs:
     - name: Run tests
       run: |        
         export PATH=${{ github.workspace }}/GccUnixR:$PATH                
-        cd Regress
-        #find . -type f -name '*.asm' | while read file; do mv "$file" "$(echo "$file" | tr '[:lower:]' '[:upper:]')"; done
-        ./test-linux.sh        
+        cd Regress        
+        ./test-linux.sh
+    - name: Package
+      run: |
+        tar -czvf jwasm-${{ github.run_id }}-${{ github.sha }}-linux-x86_64.tar.gz -C GccUnixR jwasm
