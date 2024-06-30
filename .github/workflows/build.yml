@@ -31,13 +31,9 @@ jobs:
       run: make -s -f GccUnix.mak
 
     - name: Run tests
-      run: |
-        #echo "export PATH=${{ github.workspace }}/GccUnixR:$PATH" >> $GITHUB_ENV
-        #echo $PATH
-        export PATH=${{ github.workspace }}/GccUnixR:$PATH        
-        # echo "${{ github.workspace }}/GccUnixR" >> $GITHUB_PATH
-        # cat $GITHUB_PATH        
+      run: |        
+        export PATH=${{ github.workspace }}/GccUnixR:$PATH                
         cd Regress
-        set +e
+        find . -type f -name '*.BIN' | while read file; do mv "$file" "$(echo "$file" | tr '[:lower:]' '[:upper:]')"; done        
         /bin/bash test-linux.sh
-        ls -l
+        ls -l 
