@@ -34,6 +34,6 @@ jobs:
       run: |        
         export PATH=${{ github.workspace }}/GccUnixR:$PATH                
         cd Regress
-        find . -type f -name '*.BIN' | while read file; do mv "$file" "$(echo "$file" | tr '[:lower:]' '[:upper:]')"; done        
+        find . -type f -name '*.asm' | while read file; do mv "$file" "$(echo "$file" | tr '[:lower:]' '[:upper:]')"; done
         /bin/bash test-linux.sh
         ls -l 
